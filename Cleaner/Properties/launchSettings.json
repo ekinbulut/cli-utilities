@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Cleaner": {
+      "commandName": "Project",
+      "commandLineArgs": "-f E:\\AA -r"
+    }
+  }
+}
