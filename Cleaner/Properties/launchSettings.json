@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Cleaner": {
-      "commandName": "Project",
-      "commandLineArgs": "-d E:\\AA"
+      "commandName": "Project"
     }
   }
 }

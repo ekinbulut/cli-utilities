@@ -13,9 +13,11 @@ namespace Cleaner
         public App()
         {
             _path = String.Empty;
+            DisplayInfo();
         }
 
-        internal void DisplayInfo() {
+        private void DisplayInfo()
+        {
 
             Console.WriteLine($"Name: {Info.Name}");
             Console.WriteLine($"Version: {Info.Version}");
@@ -38,13 +40,21 @@ namespace Cleaner
             // return result how many folder was empty and delete status
         }
 
-        private List<string> GetEmptyFolders(string path)
+        private List<string>? GetEmptyFolders(string path)
         {
-            var result = new List<string>();
+            var exists = Directory.Exists(path);
+            if (!exists) return null;
+
             DirectoryInfo dir = new DirectoryInfo(path);
             var subdirs = dir.GetDirectories();
+            return CheckIfSubDirectoriesEmpty(subdirs);
+        }
 
-            foreach (var subdir in subdirs)
+        private List<string> CheckIfSubDirectoriesEmpty(DirectoryInfo[] directories)
+        {
+            var result = new List<string>();
+
+            foreach (var subdir in directories)
             {
                 if (subdir.IsEmpty())
                 {
@@ -64,7 +74,7 @@ namespace Cleaner
                 Console.WriteLine($"[{DateTime.Now.Date}] Delete: {folder}");
                 counter++;
             }
-            Console.WriteLine($"[{DateTime.Now.Date}] Result: { counter } folder removed");
+            Console.WriteLine($"[{DateTime.Now.Date}] Result: {counter} folder removed");
         }
     }
 
