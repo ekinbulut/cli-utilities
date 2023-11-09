@@ -2,28 +2,60 @@
  * Empty folder detection and removal
  */
 
+
 namespace Cleaner
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // https://learn.microsoft.com/en-us/archive/msdn-magazine/2019/march/net-parse-the-command-line-with-system-commandline
-            // https://github.com/commandlineparser/commandline
+
+            var options = new Dictionary<string, string>
+            {
+                { "-d","Directory to search and destory empty folders" },
+                { "-r","Recursive search and destory empty folders" },
+            };
 
             var app = new App();
             app.DisplayInfo();
-            // parameters: -f {path} -r (recursive)
-            // get parameters from args
 
-            // TODO: validate arguments if is not valid return exit 0
-            // configure app.
+            if (args.Length == 0)
+            {
+                foreach (var option in options)
+                {
 
-            app.Run("", false);
+                    Console.WriteLine($"{option.Key} {option.Value}");
+                    Console.WriteLine();
+                }
 
+                return;
+            }
+
+            var path = "";
+            var isRecursive = false;
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (options.ContainsKey(args[i]))
+                {
+                    switch (args[i])
+                    {
+                        case "-d":
+                            path = args[i + 1];
+                            break;
+
+                        case "-r":
+                            isRecursive = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                app.Run(path, isRecursive);
+            }
         }
-
-
-
     }
 }

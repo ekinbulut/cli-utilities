@@ -19,6 +19,7 @@ namespace Cleaner
 
             Console.WriteLine($"Name: {Info.Name}");
             Console.WriteLine($"Version: {Info.Version}");
+            Console.WriteLine();
         }
 
         internal void Run(string path, bool recursive)
