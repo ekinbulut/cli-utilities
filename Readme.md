@@ -18,7 +18,7 @@ This tool helps you to find empty folders in given path and delete them.
 #### Sample Usage
 
 ```
-cleaner -d /Users/home/* -r
+dotnet run cleaner -d /Users/home/* -r
 ```
 
 
