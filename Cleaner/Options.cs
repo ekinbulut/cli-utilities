@@ -25,20 +25,19 @@ namespace Cleaner
 
         private void DisplayArgs()
         {
-            
+            foreach (var arg in Args)
+            {
+
+                Console.WriteLine($"{arg.Key} {arg.Value}");
+                Console.WriteLine();
+            }
         }
 
         public void Parse(string[] args)
         {
             if (args.Length == 0)
             {
-                foreach (var arg in Args)
-                {
-
-                    Console.WriteLine($"{arg.Key} {arg.Value}");
-                    Console.WriteLine();
-                }
-
+                DisplayArgs();
                 return;
             }
 
